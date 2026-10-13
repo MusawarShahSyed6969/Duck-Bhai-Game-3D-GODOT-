@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://qgetgxnu4e41"]
+
+[ext_resource type="Script" uid="uid://82l1c27xikiy" path="res://character_body_3d.gd" id="1_fji6l"]
+[ext_resource type="PackedScene" uid="uid://dgdp7f3vmbgcl" path="res://Assets/model.fbx" id="1_y2yqg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t5ya0"]
+height = 1.8486328
+
+[sub_resource type="BoxMesh" id="BoxMesh_t5ya0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vt4ro"]
+size = Vector3(1.6972656, 1, 1.2229004)
+
+[sub_resource type="Environment" id="Environment_t5ya0"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_vt4ro"]
+
+[sub_resource type="Compositor" id="Compositor_4vddx"]
+
+[node name="3D" type="Node3D" unique_id=353623228]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1246908231]
+transform = Transform3D(1, 0, 0, 0, 0.4916747, 0.870779, 0, -0.870779, 0.4916747, 0.52126336, 1.4985776, 0.09766531)
+light_energy = 2.901
+shadow_enabled = true
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1500883460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3926291, 0)
+script = ExtResource("1_fji6l")
+
+[node name="model" parent="CharacterBody3D" unique_id=132977409 instance=ExtResource("1_y2yqg")]
+
+[node name="CameraPivot" type="Node3D" parent="CharacterBody3D/model" unique_id=1851398189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6753564, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/model/CameraPivot" unique_id=655092471]
+transform = Transform3D(-0.99544775, 0, -0.09530867, -0.047075864, 0.86950135, 0.49168208, 0.08287101, 0.49393058, -0.8655432, -0.07659972, 2.0790157, -1.5148039)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=705401309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.954433, 0)
+shape = SubResource("CapsuleShape3D_t5ya0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=167375631]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1641138398]
+transform = Transform3D(6.11846, 0, 0, 0, 0.29884636, 0, 0, 0, 7.502328, 0, 0, 0)
+mesh = SubResource("BoxMesh_t5ya0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1433204195]
+transform = Transform3D(3.405496, 0, 0, 0, 1, 0, 0, 0, 6.0475802, 0.13985562, -0.354967, 0)
+shape = SubResource("BoxShape3D_vt4ro")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1158971646]
+environment = SubResource("Environment_t5ya0")
+camera_attributes = SubResource("CameraAttributesPractical_vt4ro")
+compositor = SubResource("Compositor_4vddx")

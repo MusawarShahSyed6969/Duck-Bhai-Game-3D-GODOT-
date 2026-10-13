@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://deap1m7onvebd"]
+
+[ext_resource type="Script" uid="uid://c0qo00o5qvaqk" path="res://Assets/Scripts/Zombie/zombie.gd" id="1_cx5av"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vt4ro"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t5ya0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t5ya0"]
+radius = 0.57910156
+height = 2.135254
+
+[node name="Node3D" type="Node3D" unique_id=1460553582]
+
+[node name="Zombie" type="CharacterBody3D" parent="." unique_id=343865130]
+script = ExtResource("1_cx5av")
+enemy_name = "SpitterZombie"
+max_health = 50.0
+stagger_chance = 0.1
+chase_speed = 2.2
+use_navigation = true
+detect_range = 25.0
+attack_mode = 1
+attack_damage = 12.0
+attack_range = 14.0
+attack_cooldown = 2.0
+attack_windup = 0.7
+knockback = 8.0
+projectile_color = Color(0.64817, 0.7314702, 0, 1)
+voice_pitch = 1.2
+
+[node name="Node3D" type="Node3D" parent="Zombie" unique_id=1748148929]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Zombie/Node3D" unique_id=437289092]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1360116, 0)
+material_override = SubResource("StandardMaterial3D_vt4ro")
+mesh = SubResource("CapsuleMesh_t5ya0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zombie" unique_id=1030410432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1130736, 0.012193322)
+shape = SubResource("CapsuleShape3D_t5ya0")

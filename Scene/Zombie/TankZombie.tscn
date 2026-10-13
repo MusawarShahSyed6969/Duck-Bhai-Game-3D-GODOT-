@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cqbmdtqjuwuh7"]
+
+[ext_resource type="Script" uid="uid://c0qo00o5qvaqk" path="res://Assets/Scripts/Zombie/zombie.gd" id="1_e178l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vt4ro"]
+albedo_color = Color(0.16666675, 1, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t5ya0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t5ya0"]
+radius = 0.57910156
+height = 2.135254
+
+[node name="Node3D" type="Node3D" unique_id=1460553582]
+
+[node name="Zombie" type="CharacterBody3D" parent="." unique_id=343865130]
+script = ExtResource("1_e178l")
+enemy_name = "TankZombie"
+max_health = 250.0
+stagger_chance = 0.1
+chase_speed = 1.6
+use_navigation = true
+detect_range = 25.0
+attack_damage = 25.0
+attack_cooldown = 0.8
+attack_windup = 0.7
+knockback = 8.0
+voice_pitch = 1.2
+
+[node name="Node3D" type="Node3D" parent="Zombie" unique_id=1748148929]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Zombie/Node3D" unique_id=437289092]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1360116, 0)
+material_override = SubResource("StandardMaterial3D_vt4ro")
+mesh = SubResource("CapsuleMesh_t5ya0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zombie" unique_id=1030410432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1130736, 0.012193322)
+shape = SubResource("CapsuleShape3D_t5ya0")

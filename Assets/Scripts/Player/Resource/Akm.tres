@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dsl0f7yql5xrg"]
+
+[ext_resource type="Script" uid="uid://w3wk56lc7ltv" path="res://Assets/Scripts/Player/weapon_data.gd" id="1_ysu7i"]
+[ext_resource type="PackedScene" uid="uid://bjs7rxrk6pqrv" path="res://Assets/3D/World/Weapons/ak47.fbx" id="2_lt5vd"]
+
+[resource]
+script = ExtResource("1_ysu7i")
+weapon_name = "AKM"
+fire_rate = 8.0
+automatic = true
+start_reserve = 5500
+max_reserve = 10000
+hold_position = Vector3(0.005, 0.08499999, -0.015)
+hold_rotation_deg = Vector3(-78, -122, 10)
+weapon_scene = ExtResource("2_lt5vd")
+metadata/_custom_type_script = "uid://w3wk56lc7ltv"

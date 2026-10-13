@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://cd7db71lyruoj"]
+
+[ext_resource type="Script" uid="uid://c0qo00o5qvaqk" path="res://Assets/Scripts/Zombie/zombie.gd" id="1_h7uhf"]
+[ext_resource type="PackedScene" uid="uid://bmy4qthlvtd40" path="res://Assets/3D/Zombie/BasicZombie/Zombie Idle.fbx" id="2_ltkic"]
+[ext_resource type="Animation" uid="uid://coqscyl3dxn57" path="res://Assets/3D/Zombie/Anim/BasicZombie_Idle.anim" id="3_db8t4"]
+[ext_resource type="Animation" uid="uid://dekvj0ta8tawd" path="res://Assets/3D/Zombie/Anim/Zombie_Run.anim" id="4_ede54"]
+[ext_resource type="Animation" uid="uid://drgolf2dc8isf" path="res://Assets/3D/Zombie/Anim/Zombie_Death.anim" id="5_a2q64"]
+[ext_resource type="Animation" uid="uid://cerbid4sxovot" path="res://Assets/3D/Zombie/Anim/zombie Attack.anim" id="5_jnj6o"]
+[ext_resource type="Animation" uid="uid://ugn2ak4y1y7v" path="res://Assets/3D/Zombie/Anim/Zombie_Attack.anim" id="6_073xv"]
+[ext_resource type="Animation" uid="uid://dh4gyljrxmka3" path="res://Assets/3D/Zombie/Anim/ZombieSlam.anim" id="6_f5hd3"]
+
+[sub_resource type="Animation" id="Animation_jnj6o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:anim_idle")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:anim_run")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["run"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..:anim_attack")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["zombie Attack"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_073xv"]
+_data = {
+&"RESET": SubResource("Animation_jnj6o")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ede54"]
+_data = {
+&"BasicZombie_Idle": ExtResource("3_db8t4"),
+&"Zombie_Run": ExtResource("4_ede54"),
+&"zombie Attack": ExtResource("6_073xv")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t5ya0"]
+radius = 0.4428711
+height = 2.135254
+
+[node name="Node3D" type="Node3D" unique_id=1460553582]
+
+[node name="Zombie" type="CharacterBody3D" parent="." unique_id=343865130 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_h7uhf")
+use_navigation = true
+clip_idle = ExtResource("3_db8t4")
+clip_walk = ExtResource("4_ede54")
+clip_run = ExtResource("4_ede54")
+clip_attack = ExtResource("5_jnj6o")
+clip_death = ExtResource("5_a2q64")
+clip_special = ExtResource("6_f5hd3")
+animation_player = NodePath("Node3D/Zombie Idle/Zombie")
+anim_walk = "Zombie_Run"
+anim_attack = "zombie Attack"
+
+[node name="Node3D" type="Node3D" parent="Zombie" unique_id=1748148929]
+
+[node name="Zombie Idle" parent="Zombie/Node3D" unique_id=2006218608 instance=ExtResource("2_ltkic")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Zombie" type="AnimationPlayer" parent="Zombie/Node3D/Zombie Idle" unique_id=1748380242]
+libraries/ = SubResource("AnimationLibrary_073xv")
+libraries/Zombiee = SubResource("AnimationLibrary_ede54")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zombie" unique_id=1030410432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1130736, 0.012193322)
+shape = SubResource("CapsuleShape3D_t5ya0")

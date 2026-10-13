@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://c6bpwcv75jjdp"]
+
+[ext_resource type="PackedScene" uid="uid://dp07sl4gefcbx" path="res://Scene/Player/Player.tscn" id="1_mhtsl"]
+[ext_resource type="Texture2D" uid="uid://c5docnc2thjru" path="res://Assets/2D/BG.png" id="2_4jv7b"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_w51g1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5ya0"]
+size = Vector2(1157, 131)
+
+[node name="Game" type="Node2D" unique_id=165773593]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1830159330]
+
+[node name="Bg" type="Sprite2D" parent="Parallax2D" unique_id=1133259843]
+position = Vector2(-262, -96.999985)
+scale = Vector2(2.8, 2.550515)
+texture = ExtResource("2_4jv7b")
+
+[node name="CharacterBody2D" parent="." unique_id=1632674582 instance=ExtResource("1_mhtsl")]
+visibility_layer = 2
+position = Vector2(-327.00003, 101.99997)
+scale = Vector2(1.0149093, 0.7389128)
+collision_layer = 2
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=2115248256]
+position = Vector2(196.07668, -32.48015)
+scale = Vector2(0.9853097, 1.3533396)
+limit_bottom = 800
+position_smoothing_enabled = true
+
+[node name="Area2D" type="StaticBody2D" parent="." unique_id=9351953]
+position = Vector2(0, 243)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=560989839]
+position = Vector2(-4.5, 6.5)
+shape = SubResource("RectangleShape2D_t5ya0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1085240805]
+scale = Vector2(9.159999, 1)
+texture = ExtResource("2_w51g1")
